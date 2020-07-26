@@ -13,19 +13,12 @@ public class main {
 		 String consulta = "";      
 		
 		System.out.println("Bienvenidos a Java con Prolog.");
-		
-		
 	
 			do {
 				consulta = pedirConsulta();
 				realizarConsulta(consulta);
 				
 				}while(consulta != "exit.");
-        
-     
-  	
-	
-
 }
 
 	private static void realizarConsulta(String consulta) {
