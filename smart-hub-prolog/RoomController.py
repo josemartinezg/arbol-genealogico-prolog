@@ -3,20 +3,24 @@
 # app = Flask(__name__)
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
+from PyQt5.uic.properties import QtWidgets, QtCore
 from graphviz import Digraph
 from pyswip import Prolog
 
 class RoomController:
     def __init__(self):
         self.prologInstance = Prolog()
-        self.prologInstance.consult('c:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/arbol.pl')
+        self.prologInstance.consult('/home/saulfeliciano/Documents/Java Projects/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
         self.graph = Digraph()
     
     def findallCousins(self, name):
         cousins = set()
-        query = self.prologInstance.query("persona(" + name + ")")
-        list(self.prologInstance.query("persona(" + name + ")"))
+        query = self.prologInstance.query("primo(" + name + ",Cousins)")
+        for solution in query:
+            cousins.add(solution["Cousins"])
+            print("solution")
+        return cousins
 
 
 
@@ -24,10 +28,30 @@ class RoomController:
 class EjemploGUI(QMainWindow):
     def __init__(self):
         self.repositorio = RoomController()
+        #self.repositorio.findallCousins("francisca")
         super().__init__()
-       # uic.loadUi("/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/mainview.ui", self)
-        self.repositorio.findallCousins("francisca")
+        uic.loadUi("/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/mainview.ui", self)
+        self.btnagregarpuerta = QPushButton("pushButton_agregarpuerta")
+        self.btnagregarpuerta.clicked.connect(self.agregarpuerta)
         #query = prolog.query("primo(" + name + ",Cousins)")
+
+    def agregarpuerta(self):
+        query = self.prologInstance.query("agregar_puerta(puertaID,lugar,tipo)")
+        #query2 = self.prologInstance.query() TODO insertar hecho para poder contar la cantidad de puertas
+        i = 0
+        for puertas in query: #Aca va query2
+            i = i+1
+        self.textpuerta = QLineEdit("lineEdit_puerta")
+        self.textpuerta.setText(i)
+
+    def eliminarpuerta(self):
+        query = self.prologInstance.query("remover_puerta(puertaID,lugar,tipo)")
+        # query2 = self.prologInstance.query() TODO insertar hecho para poder contar la cantidad de puertas
+        i = 0
+        for puertas in query:  # Aca va query2
+            i = i - 1
+        self.textpuerta = QLineEdit("lineEdit_puerta")
+        self.textpuerta.setText(i)
 
     # def hello_world():
     # prolog = Prolog()
