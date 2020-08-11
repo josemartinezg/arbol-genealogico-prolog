@@ -34,8 +34,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1085</width>
-          <height>775</height>
+          <width>1087</width>
+          <height>777</height>
          </rect>
         </property>
         <widget class="QScrollBar" name="verticalScrollBar">
@@ -1222,14 +1222,72 @@ border-color: rgb(136, 138, 133);</string>
         <widget class="QLabel" name="label_37">
          <property name="geometry">
           <rect>
-           <x>40</x>
+           <x>610</x>
            <y>20</y>
-           <width>991</width>
+           <width>351</width>
            <height>41</height>
           </rect>
          </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-style:italic; text-decoration: underline;&quot;&gt;Rooms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_agregarpuerta">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>20</y>
+           <width>121</width>
+           <height>38</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string>Agregar Puerta</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_eliminarpuerta">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>20</y>
+           <width>121</width>
+           <height>38</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string>Eliminar Puerta</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_38">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>30</y>
+           <width>101</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Cant. Puerta</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_cant_puertas">
+         <property name="geometry">
+          <rect>
+           <x>420</x>
+           <y>30</y>
+           <width>321</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
          </property>
         </widget>
         <zorder>widget</zorder>
@@ -1238,6 +1296,10 @@ border-color: rgb(136, 138, 133);</string>
         <zorder>widget_3</zorder>
         <zorder>widget_4</zorder>
         <zorder>label_37</zorder>
+        <zorder>pushButton_agregarpuerta</zorder>
+        <zorder>pushButton_eliminarpuerta</zorder>
+        <zorder>label_38</zorder>
+        <zorder>label_cant_puertas</zorder>
        </widget>
       </widget>
      </item>
@@ -1250,7 +1312,7 @@ border-color: rgb(136, 138, 133);</string>
      <x>0</x>
      <y>0</y>
      <width>1087</width>
-     <height>30</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

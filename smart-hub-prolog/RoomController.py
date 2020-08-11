@@ -11,7 +11,7 @@ from pyswip import Prolog
 class RoomController:
     def __init__(self):
         self.prologInstance = Prolog()
-        self.prologInstance.consult('/home/saulfeliciano/Documents/Java Projects/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
+        self.prologInstance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
         self.graph = Digraph()
     
     def findallCousins(self, name):
@@ -30,19 +30,19 @@ class EjemploGUI(QMainWindow):
         self.repositorio = RoomController()
         #self.repositorio.findallCousins("francisca")
         super().__init__()
-        uic.loadUi("/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/mainview.ui", self)
+        uic.loadUi("C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/mainview.ui", self)
         self.btnagregarpuerta = QPushButton("pushButton_agregarpuerta")
         self.btnagregarpuerta.clicked.connect(self.agregarpuerta)
         #query = prolog.query("primo(" + name + ",Cousins)")
 
     def agregarpuerta(self):
         query = self.prologInstance.query("agregar_puerta(puertaID,lugar,tipo)")
-        #query2 = self.prologInstance.query() TODO insertar hecho para poder contar la cantidad de puertas
+        query2 = self.prologInstance.query("listing(puerta)") #TODO insertar hecho para poder contar la cantidad de puertas
         i = 0
-        for puertas in query: #Aca va query2
+        for puertas in query2: #Aca va query2
             i = i+1
-        self.textpuerta = QLineEdit("lineEdit_puerta")
-        self.textpuerta.setText(i)
+        self.textpuerta = QLabel("label_cant_puertas")
+        self.textpuerta.setText(5)
 
     def eliminarpuerta(self):
         query = self.prologInstance.query("remover_puerta(puertaID,lugar,tipo)")
