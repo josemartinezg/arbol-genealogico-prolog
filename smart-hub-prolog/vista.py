@@ -14,18 +14,23 @@ from graphviz import Digraph
 
 class RoomController:
     def __init__(self):
-        self.prologInstance = Prolog()
-        self.prologInstance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
+        self.prolog_instance = Prolog()
+        self.prolog_instance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
         self.graph = Digraph()
 
 
     def cantidad_puertas(self):
         puertas = 0
-        query2 = self.prologInstance.query("sensor(movimiento,habitacion)")
+        query2 = self.prolog_instance.query("sensor(movimiento,habitacion)")
         for puerta in query2:
             print(puerta)
             puertas = puertas+1
         result = bool(query2)
+        return result
+
+    def abrir_ventana(self):
+        query = self.prolog_instance.query("abrir_puerta(puerta_1,marquesina)")
+        result = bool(query)
         return result
 
 class Ui_MainWindow(object):
