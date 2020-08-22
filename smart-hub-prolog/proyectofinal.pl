@@ -5,7 +5,7 @@
 %Punto 3: Monitoreo
 
 %Lista de lugares *solo el lugar: [habitacion_1,habitacion2]
-:- dynamic (lugares/1).
+:- dynamic (lugares/2).
 
 %Lista de puertas *Nombre, Lugar, Tipo: [ (puerta_1,habitacion_1,Inte) ]
 :- dynamic (puertas/3).
@@ -19,16 +19,16 @@
 :- dynamic (luces/2).
 :- dynamic (lucesEncendidas/2).
 :- dynamic (lucesApagadas/2).
-
 % DISPOSITIVOS *Nombre, lugar:
 %[ (aire_acondicionado, habitacion_1) ]
-:- dynamic (dispositivos/3).
+:- dynamic (dispositivos/2).
 :- dynamic (dispositivosEncendidos/2).
 :- dynamic (dispositivosApagados/2).
 %CONSUMO DIARIO
 :- dynamic (consumoDiario/2). %[consumo,dispositivo]
+%TEMPERATURAS
+:- dynamic (temperatura/2). %[consumo,dispositivo]
 
-%Lista de sensores
 
 
 
@@ -36,6 +36,10 @@
 % hogar, analizando sus estados y modificándolos de acuerdo a
 % evaluaciones de eventos específicos que ocurran y que considere puedan
 % representar problemas de seguridad para sus habitantes.
+
+%LUGARES
+agregar_lugar(Nombre):- assertz(lugares(Nombre,0)).
+remover_lugar(Nombre):- retract(lugares(Nombre,_)).
 
 %PUERTAS
 
@@ -70,21 +74,39 @@ agregar_dispositivo(Nombre,Lugar):- assertz(dispositivos(Nombre,Lugar)),assertz(
 
 remover_dispositivo(Nombre,Lugar):-retract(dispositivos(Nombre,Lugar)),retract(dispositivosApagados(Nombre,Lugar)).
 
-abrir_puerta(Nombre,Lugar):-puertas(Nombre,Lugar,Tipo),retract(puertasCerradas(Nombre,Lugar,Tipo)),assertz(puertasAbiertas(Nombre,Lugar,Tipo)).
-cerrar_puerta(Nombre,Lugar):-puertas(Nombre,Lugar,Tipo),retract(puertasAbiertas(Nombre,Lugar,Tipo)),assertz(puertasCerradas(Nombre,Lugar,Tipo)).
-
+encender_dispositivo(Nombre,Lugar):-dispositivos(Nombre,Lugar),retract(dispositivosApagados(Nombre,Lugar)),assertz(dispositivosEncendidos(Nombre,Lugar)).
+apagar_dispositivo(Nombre,Lugar):-dispositivos(Nombre,Lugar),retract(dispositivosEncendidos(Nombre,Lugar)),assertz(dispositivosApagados(Nombre,Lugar)).
 %CONSUMO DIARIO
 agregar_consumo(Dispositivo,Consumo):-dispositivos(Dispositivo,_),assertz(consumoDiario(Dispositivo,Consumo)).
 remover_consumo(Dispositivo):-dispositivos(Dispositivo,_),retract(consumoDiario(Dispositivo,_)).
 mostrar_consumos:-listing(consumoDiario).
 
-%EVENTOS:
+
+% SENSOR MOVIMIENTO
+
+actualizarCantidad(Nombre,Cantidad):-retract(lugares(Nombre,_)),assertz(lugares(Nombre,Cantidad)).
+
+% SENSOR TEMPERATURA
+
+%EN PROGRESO temperatura(Grados,Lugar):-
+
+
+
+% EVENTOS:
+
 % DORMIR
 
-durmiendoVentanas:- ventanasAbiertas(Nombre,Lugar),assertz(ventanasCerradas(Nombre,Lugar)),retract(ventanasAbiertas(Nombre,Lugar)).
+durmiendoVentanas:- ventanasAbiertas(Nombre,Lugar),retract(ventanasAbiertas(Nombre,Lugar)),assertz(ventanasCerradas(Nombre,Lugar)).
 
-durmiendoPuertas:-  puertasAbiertas(Nombre,Lugar,exterior),assertz(puertasCerradas(Nombre,Lugar,exterior)),retract(puertasAbiertas(Nombre,Lugar,exterior)).
+durmiendoPuertas:-  puertasAbiertas(Nombre,Lugar,exterior),retract(puertasAbiertas(Nombre,Lugar,exterior)),assertz(puertasCerradas(Nombre,Lugar,exterior)).
 
+durmiendoLuces:- lucesEncendidas(Nombre,Lugar),retract(lucesEncendidas(Nombre,Lugar)),assertz(lucesApagadas(Nombre,Lugar)).
+
+% SALIR
+
+%%	si todos salen true se reutilizarían las reglas de durmiendo
+%%	porque es un evento parecido.
+salir(Lugar):-lugares(Lugar,Cantidad), Cantidad = 0.
 
 % ESTADO:
 
@@ -128,14 +150,3 @@ pseudoIf(todo):- write('Puertas Abiertas:'),
 	           write('Dispositivos apagados:'),
 	           listing(dispositivosApagados).
 
-
-
-
-
-
-
-
-%			 write("Ventanas Abiertas:"),
-%	 listing(ventanasAbiertas),
-%	 write("Ventanas Cerradas:"),
-%	 listing(ventanasCerradas.
