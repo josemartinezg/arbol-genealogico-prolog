@@ -29,20 +29,20 @@
 %TEMPERATURAS
 :- dynamic (temperatura/2). %[consumo,dispositivo]
 
-ventanas(habitacion).
-ventanas(living).
-ventanas(terraza).
-ventanas(cocina).
+ventanas(ventana1, habitacion).
+ventanas(ventan2, living).
+ventanas(ventana3, terraza).
+ventanas(ventana4, cocina).
 
 dispositivos(habitacion, sensorMovimiento).
 dispositivos(habitacion, sensorLuz).
 dispositivos(habitacion, sensorTemperatura).
 dispositivos(cocina, sensorHumo).
 
-habitaciones(cocina).
-habitaciones(habitacion).
-habitaciones(living).
-habitaciones(terraza).
+lugares(cocina,5).
+lugares(habitacion,2).
+lugares(living,8).
+lugares(terraza,10).
 
 luces(luz_1, cocina).
 luces(luz_2, habitacion).
@@ -62,8 +62,8 @@ puertas(puerta4, living, exterior).
 % representar problemas de seguridad para sus habitantes.
 
 %LUGARES
-agregar_lugar(Nombre):- assertz(habitaciones(Nombre,0)).
-remover_lugar(Nombre):- retract(habitaciones(Nombre,_)).
+agregar_lugar(Nombre):- assertz(lugares(Nombre,0)).
+remover_lugar(Nombre):- retract(lugares(Nombre,_)).
 
 %PUERTAS
 

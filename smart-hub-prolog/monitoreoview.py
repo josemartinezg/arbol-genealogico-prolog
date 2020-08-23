@@ -26,15 +26,16 @@ class RoomController:
 
     def mostrar_ventanas(self):
         ventanas = set()
-        query = self.prolog_instance.query("ventanas(X).")
+        query = self.prolog_instance.query("ventanas(Nombre,Lugar).")
         for solution in query:
-            ventanas.add(solution["X"].capitalize())
+            ventanas.add(solution["Nombre"].capitalize() + " en " + solution["Lugar"].capitalize())
         return ventanas
 
     def mostrar_habitaciones(self):
         habitaciones = set()
-        query = self.prolog_instance.query("habitaciones(X).")
+        query = self.prolog_instance.query("lugares(X,Cantidad).")
         for solution in query:
+            print(solution["X"].capitalize() + " capacidad: " + str(solution["Cantidad"]))
             habitaciones.add(solution["X"].capitalize())
         return habitaciones
 
@@ -275,7 +276,7 @@ class Ui_MainWindow(object):
         self.btn_habitacion.clicked.connect(self.agregar_habitacion)
         self.btn_luces.clicked.connect(self.agregar_luz)
         self.btn_puertas.clicked.connect(self.agregar_puerta)
-        self.btn_habitacion.clicked.connect(self.agregar_habitacion)
+        self.btn_ventana.clicked.connect(self.agregar_ventana)
 
 
         self.retranslateUi(MainWindow)
@@ -369,9 +370,10 @@ class Ui_MainWindow(object):
         if self.cbx_dispositivo_hab.currentText() != "<Seleccionar>" or self.txt_dispositivo.text().text() != "":
             habitacion = self.cbx_dispositivo_hab.currentText().lower()
             nombre = self.txt_dispositivo.text().lower()
-            print(habitacion)
-            print(nombre)
-            self.repositorio.prolog_instance.query("agregar_dispositivo(" + nombre +"," + habitacion + ").")
+
+            query = self.repositorio.prolog_instance.query("agregar_dispositivo(" + habitacion +"," + nombre + ").")
+            for solution in query:
+                print(solution)
             dispositivos = self.repositorio.mostrar_dispositivos()
             self.lista_dispositivos.clear()
             self.lista_dispositivos.addItems(dispositivos)
@@ -382,7 +384,10 @@ class Ui_MainWindow(object):
         if self.txt_dispositivo.text() != "":
             nombre = self.txt_habitacion.text().lower()
             print(nombre)
-            self.repositorio.prolog_instance.query("agregar_lugar(" + nombre +").")
+            #query = self.repositorio.prolog_instance.query("agregar_lugar(" + nombre +"," + str(0) + ").")
+            query = self.repositorio.prolog_instance.query("agregar_lugar(" + nombre +").")
+            for solution in query:
+                print(solution)
             habitaciones = self.repositorio.mostrar_habitaciones()
             self.lista_habitaciones.clear()
             self.lista_habitaciones.addItems(habitaciones)
@@ -394,9 +399,10 @@ class Ui_MainWindow(object):
         if self.cbx_luces_hab.currentText() != "<Seleccionar>" or self.txt_luces.text() != "":
             habitacion = self.cbx_luces_hab.currentText().lower()
             nombre = self.txt_luces.text().lower()
-            print(habitacion)
-            print(nombre)
-            self.repositorio.prolog_instance.query("agregar_luz(" + nombre +"," + habitacion + ").")
+
+            query = self.repositorio.prolog_instance.query("agregar_luz(" + nombre +"," + habitacion + ").")
+            for solution in query:
+                print(solution)
             luces = self.repositorio.mostrar_luces()
             self.lista_luces.clear()
             self.lista_luces.addItems(luces)
@@ -407,11 +413,11 @@ class Ui_MainWindow(object):
         if self.cbx_puerta_hab.currentText() != "<Seleccionar>" or self.cbx_puertas.currentText() \
                 or self.txt_puerta.text() != "":
             habitacion = self.cbx_puerta_hab.currentText().lower()
-            nombre = self.txt_puerta.text().lower()
+            nombre = self.txt_puerta.text()
             tipo_puerta = self.cbx_puertas.currentText().lower()
-            print(habitacion)
-            print(nombre)
-            self.repositorio.prolog_instance.query("agregar_luz(" + nombre + "," + habitacion + ","+ tipo_puerta + ").")
+            query = self.repositorio.prolog_instance.query("agregar_puerta(" + nombre + "," + habitacion + ","+ tipo_puerta + ").")
+            for solution in query:
+                print(solution)
             puertas = self.repositorio.mostrar_puertas()
             self.lista_puertas.clear()
             self.lista_puertas.addItems(puertas)
@@ -423,12 +429,12 @@ class Ui_MainWindow(object):
         if self.cbx_ventana_hab.currentText() != "<Seleccionar>" or self.txt_ventana.text() != "":
             habitacion = self.cbx_ventana_hab.currentText().lower()
             nombre = self.txt_ventana.text().lower()
-            print(habitacion)
-            print(nombre)
-            self.repositorio.prolog_instance.query("agregar_ventana(" + nombre +"," + habitacion + ").")
-            habitaciones = self.repositorio.mostrar_ventanas()
+            query = self.repositorio.prolog_instance.query("agregar_ventana(" + nombre +"," + habitacion + ").")
+            for solution in query:
+                print(solution)
+            ventanas = self.repositorio.mostrar_ventanas()
             self.lista_ventanas.clear()
-            self.lista_ventanas.addItems(habitaciones)
+            self.lista_ventanas.addItems(ventanas)
         else:
             self.display_error_qt()
 
