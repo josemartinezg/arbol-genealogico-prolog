@@ -14,7 +14,7 @@ from graphviz import Digraph
 class RoomController:
     def __init__(self):
         self.prolog_instance = Prolog()
-        self.prolog_instance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
+        self.prolog_instance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
         self.graph = Digraph()
 
 

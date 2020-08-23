@@ -29,6 +29,30 @@
 %TEMPERATURAS
 :- dynamic (temperatura/2). %[consumo,dispositivo]
 
+ventanas(habitacion).
+ventanas(living).
+ventanas(terraza).
+ventanas(cocina).
+
+dispositivos(habitacion, sensorMovimiento).
+dispositivos(habitacion, sensorLuz).
+dispositivos(habitacion, sensorTemperatura).
+dispositivos(cocina, sensorHumo).
+
+habitaciones(cocina).
+habitaciones(habitacion).
+habitaciones(living).
+habitaciones(terraza).
+
+luces(luz_1, cocina).
+luces(luz_2, habitacion).
+luces(luz_3, living).
+luces(luz_4, terraza).
+
+puertas(puerta1, cocina, interior).
+puertas(puerta2, habitacion, interior).
+puertas(puerta3, terraza, exterior).
+puertas(puerta4, living, exterior).
 
 
 
@@ -38,8 +62,8 @@
 % representar problemas de seguridad para sus habitantes.
 
 %LUGARES
-agregar_lugar(Nombre):- assertz(lugares(Nombre,0)).
-remover_lugar(Nombre):- retract(lugares(Nombre,_)).
+agregar_lugar(Nombre):- assertz(habitaciones(Nombre,0)).
+remover_lugar(Nombre):- retract(habitaciones(Nombre,_)).
 
 %PUERTAS
 
@@ -149,4 +173,6 @@ pseudoIf(todo):- write('Puertas Abiertas:'),
 	           listing(dispositivosEncendidos),
 	           write('Dispositivos apagados:'),
 	           listing(dispositivosApagados).
+
+
 

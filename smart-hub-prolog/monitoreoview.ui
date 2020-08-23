@@ -627,7 +627,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-style:italic; text-decoration: underline;&quot;&gt;Monitoreo de Elementos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="lista_dispositivos_2">
+   <widget class="QListWidget" name="lista_habitaciones">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -642,7 +642,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QListWidget" name="lista_dispositivos_3">
+   <widget class="QListWidget" name="lista_luces">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -657,7 +657,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QListWidget" name="lista_dispositivos_4">
+   <widget class="QListWidget" name="lista_puertas">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -672,7 +672,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QListWidget" name="lista_dispositivos_5">
+   <widget class="QListWidget" name="lista_ventanas">
     <property name="geometry">
      <rect>
       <x>1010</x>

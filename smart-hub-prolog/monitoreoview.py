@@ -9,9 +9,58 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pyswip import Prolog
+from graphviz import Digraph
+class RoomController:
+    def __init__(self):
+        self.prolog_instance = Prolog()
+        self.prolog_instance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
+        self.graph = Digraph()
+
+    def mostrar_dispositivos(self):
+        dispositivos = set()
+        query = self.prolog_instance.query("dispositivos(Lugar, Nombre).")
+        for solution in query:
+            dispositivos.add(solution["Nombre"] + ' en ' + solution["Lugar"].capitalize())
+        return dispositivos
+
+    def mostrar_ventanas(self):
+        ventanas = set()
+        query = self.prolog_instance.query("ventanas(X).")
+        for solution in query:
+            ventanas.add(solution["X"].capitalize())
+        return ventanas
+
+    def mostrar_habitaciones(self):
+        habitaciones = set()
+        query = self.prolog_instance.query("habitaciones(X).")
+        for solution in query:
+            habitaciones.add(solution["X"].capitalize())
+        return habitaciones
+
+    def mostrar_luces(self):
+        luces = set()
+        query = self.prolog_instance.query("luces(Nombre, Habitacion).")
+        for solution in query:
+            luces.add(solution["Nombre"].capitalize() + " en " + solution["Habitacion"].capitalize())
+        return luces
+
+    def mostrar_puertas(self):
+        puertas = set()
+        query = self.prolog_instance.query("puertas(Nombre, Habitacion, Tipo).")
+        for solution in query:
+            puertas.add(solution["Nombre"].capitalize() + " en " + solution["Habitacion"].capitalize()
+                        + " de tipo " + solution["Tipo"].capitalize())
+        return puertas
 
 
 class Ui_MainWindow(object):
+    def __init__(self):
+        self.repositorio = RoomController()
+
+
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1531, 755)
@@ -181,30 +230,30 @@ class Ui_MainWindow(object):
         self.lbl_rooms = QtWidgets.QLabel(self.centralwidget)
         self.lbl_rooms.setGeometry(QtCore.QRect(20, 10, 351, 41))
         self.lbl_rooms.setObjectName("lbl_rooms")
-        self.lista_dispositivos_2 = QtWidgets.QListWidget(self.centralwidget)
-        self.lista_dispositivos_2.setGeometry(QtCore.QRect(530, 140, 221, 191))
+        self.lista_habitaciones = QtWidgets.QListWidget(self.centralwidget)
+        self.lista_habitaciones.setGeometry(QtCore.QRect(530, 140, 221, 191))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.lista_dispositivos_2.setFont(font)
-        self.lista_dispositivos_2.setObjectName("lista_dispositivos_2")
-        self.lista_dispositivos_3 = QtWidgets.QListWidget(self.centralwidget)
-        self.lista_dispositivos_3.setGeometry(QtCore.QRect(20, 430, 221, 191))
+        self.lista_habitaciones.setFont(font)
+        self.lista_habitaciones.setObjectName("lista_habitaciones")
+        self.lista_luces = QtWidgets.QListWidget(self.centralwidget)
+        self.lista_luces.setGeometry(QtCore.QRect(20, 430, 221, 191))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.lista_dispositivos_3.setFont(font)
-        self.lista_dispositivos_3.setObjectName("lista_dispositivos_3")
-        self.lista_dispositivos_4 = QtWidgets.QListWidget(self.centralwidget)
-        self.lista_dispositivos_4.setGeometry(QtCore.QRect(530, 430, 221, 191))
+        self.lista_luces.setFont(font)
+        self.lista_luces.setObjectName("lista_luces")
+        self.lista_puertas = QtWidgets.QListWidget(self.centralwidget)
+        self.lista_puertas.setGeometry(QtCore.QRect(530, 430, 221, 191))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.lista_dispositivos_4.setFont(font)
-        self.lista_dispositivos_4.setObjectName("lista_dispositivos_4")
-        self.lista_dispositivos_5 = QtWidgets.QListWidget(self.centralwidget)
-        self.lista_dispositivos_5.setGeometry(QtCore.QRect(1010, 140, 221, 191))
+        self.lista_puertas.setFont(font)
+        self.lista_puertas.setObjectName("lista_puertas")
+        self.lista_ventanas = QtWidgets.QListWidget(self.centralwidget)
+        self.lista_ventanas.setGeometry(QtCore.QRect(1010, 140, 221, 191))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.lista_dispositivos_5.setFont(font)
-        self.lista_dispositivos_5.setObjectName("lista_dispositivos_5")
+        self.lista_ventanas.setFont(font)
+        self.lista_ventanas.setObjectName("lista_ventanas")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1531, 21))
@@ -219,6 +268,15 @@ class Ui_MainWindow(object):
         self.actionPantalla_Principal.setObjectName("actionPantalla_Principal")
         self.menuMen.addAction(self.actionPantalla_Principal)
         self.menubar.addAction(self.menuMen.menuAction())
+
+        self.search_dispositivos()
+        #Accion de los botonres
+        self.btn_dispositivo.clicked.connect(self.agregar_dispositivo)
+        self.btn_habitacion.clicked.connect(self.agregar_habitacion)
+        self.btn_luces.clicked.connect(self.agregar_luz)
+        self.btn_puertas.clicked.connect(self.agregar_puerta)
+        self.btn_habitacion.clicked.connect(self.agregar_habitacion)
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -270,6 +328,109 @@ class Ui_MainWindow(object):
         self.menuMen.setTitle(_translate("MainWindow", "Menú"))
         self.actionPantalla_Principal.setText(_translate("MainWindow", "Pantalla Principal"))
 
+
+    def search_dispositivos(self):
+        lista = []
+        ventanas = self.repositorio.mostrar_ventanas()
+        dispositivos = self.repositorio.mostrar_dispositivos()
+        habitaciones = self.repositorio.mostrar_habitaciones()
+        luces = self.repositorio.mostrar_luces()
+        puertas = self.repositorio.mostrar_puertas()
+        #Agregando hechos a la lista.
+        self.lista_dispositivos.addItems(dispositivos)
+        self.lista_ventanas.addItems(ventanas)
+        self.lista_habitaciones.addItems(habitaciones)
+        self.lista_luces.addItems(luces)
+        self.lista_puertas.addItems(puertas)
+        #Agregando habitaciones a los ComboBox
+        self.cbx_dispositivo_hab.addItems(habitaciones)
+        self.cbx_luces_hab.addItems(habitaciones)
+        self.cbx_ventana_hab.addItems(habitaciones)
+        self.cbx_puerta_hab.addItems(habitaciones)
+        self.cbx_puertas.addItems(["Exterior", "Interior"])
+
+    def isValidOption(self):
+        if self.opciones.currentText() != "<Seleccionar>" and self.input_nombre.text() != "":
+            return True
+        return False
+
+
+    def display_error_qt(self):
+        error = QtWidgets.QErrorMessage()
+        error.setWindowModality(QtCore.Qt.WindowModal)
+        error.showMessage("Asegurese de que el campo de nombre no este vacio y que se seleccione un tipo de "
+                          "consulta")
+        # error.setIcon(QtWidgets.QMessageBox.Critical)
+        error.setWindowTitle("Error")
+        error.exec_()
+
+
+    def agregar_dispositivo(self):
+        if self.cbx_dispositivo_hab.currentText() != "<Seleccionar>" or self.txt_dispositivo.text().text() != "":
+            habitacion = self.cbx_dispositivo_hab.currentText().lower()
+            nombre = self.txt_dispositivo.text().lower()
+            print(habitacion)
+            print(nombre)
+            self.repositorio.prolog_instance.query("agregar_dispositivo(" + nombre +"," + habitacion + ").")
+            dispositivos = self.repositorio.mostrar_dispositivos()
+            self.lista_dispositivos.clear()
+            self.lista_dispositivos.addItems(dispositivos)
+        else:
+            self.display_error_qt()
+
+    def agregar_habitacion(self):
+        if self.txt_dispositivo.text() != "":
+            nombre = self.txt_habitacion.text().lower()
+            print(nombre)
+            self.repositorio.prolog_instance.query("agregar_lugar(" + nombre +").")
+            habitaciones = self.repositorio.mostrar_habitaciones()
+            self.lista_habitaciones.clear()
+            self.lista_habitaciones.addItems(habitaciones)
+
+        else:
+            self.display_error_qt()
+
+    def agregar_luz(self):
+        if self.cbx_luces_hab.currentText() != "<Seleccionar>" or self.txt_luces.text() != "":
+            habitacion = self.cbx_luces_hab.currentText().lower()
+            nombre = self.txt_luces.text().lower()
+            print(habitacion)
+            print(nombre)
+            self.repositorio.prolog_instance.query("agregar_luz(" + nombre +"," + habitacion + ").")
+            luces = self.repositorio.mostrar_luces()
+            self.lista_luces.clear()
+            self.lista_luces.addItems(luces)
+        else:
+            self.display_error_qt()
+
+    def agregar_puerta(self):
+        if self.cbx_puerta_hab.currentText() != "<Seleccionar>" or self.cbx_puertas.currentText() \
+                or self.txt_puerta.text() != "":
+            habitacion = self.cbx_puerta_hab.currentText().lower()
+            nombre = self.txt_puerta.text().lower()
+            tipo_puerta = self.cbx_puertas.currentText().lower()
+            print(habitacion)
+            print(nombre)
+            self.repositorio.prolog_instance.query("agregar_luz(" + nombre + "," + habitacion + ","+ tipo_puerta + ").")
+            puertas = self.repositorio.mostrar_puertas()
+            self.lista_puertas.clear()
+            self.lista_puertas.addItems(puertas)
+        else:
+            self.display_error_qt()
+
+
+    def agregar_ventana(self):
+        if self.cbx_ventana_hab.currentText() != "<Seleccionar>" or self.txt_ventana.text() != "":
+            habitacion = self.cbx_ventana_hab.currentText().lower()
+            nombre = self.txt_ventana.text().lower()
+            print(habitacion)
+            print(nombre)
+            self.repositorio.prolog_instance.query("agregar_ventana(" + nombre +"," + habitacion + ").")
+            habitaciones = self.repositorio.mostrar_ventanas()
+            self.lista_ventanas.clear()
+            self.lista_ventanas.addItems(habitaciones)
+        else:
+            self.display_error_qt()
 
 if __name__ == "__main__":
     import sys
