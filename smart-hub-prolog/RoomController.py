@@ -3,7 +3,7 @@
 # app = Flask(__name__)
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit, QLabel
 from PyQt5.uic.properties import QtWidgets, QtCore
 from graphviz import Digraph
 from pyswip import Prolog
@@ -11,7 +11,7 @@ from pyswip import Prolog
 class RoomController:
     def __init__(self):
         self.prologInstance = Prolog()
-        self.prologInstance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
+        self.prologInstance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
         self.graph = Digraph()
     
     def findallCousins(self, name):
@@ -30,7 +30,7 @@ class EjemploGUI(QMainWindow):
         self.repositorio = RoomController()
         #self.repositorio.findallCousins("francisca")
         super().__init__()
-        uic.loadUi("C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/mainview.ui", self)
+        uic.loadUi("/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/mainview.ui", self)
         self.btnagregarpuerta = QPushButton("pushButton_agregarpuerta")
         self.btnagregarpuerta.clicked.connect(self.agregarpuerta)
         #query = prolog.query("primo(" + name + ",Cousins)")
