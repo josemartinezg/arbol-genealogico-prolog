@@ -154,11 +154,13 @@ class RoomController:
         for luz in luces:
             self.accionar_puerta_ventana("apagar_luz", luz, habitacion, tipo)
 
-
 class Ui_MainWindow(object):
+    def __init__(self):
+        self.repositorio = RoomController()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1122, 908)
+        MainWindow.resize(1092, 846)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -526,7 +528,7 @@ class Ui_MainWindow(object):
         self.btn_aire4.setStyleSheet("background-color: rgb(114, 159, 207);")
         self.btn_aire4.setObjectName("btn_aire4")
         self.lbl_rooms = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.lbl_rooms.setGeometry(QtCore.QRect(610, 20, 351, 41))
+        self.lbl_rooms.setGeometry(QtCore.QRect(710, 20, 291, 41))
         self.lbl_rooms.setObjectName("lbl_rooms")
         self.lbl_paneles = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.lbl_paneles.setGeometry(QtCore.QRect(70, 30, 191, 22))
@@ -540,6 +542,10 @@ class Ui_MainWindow(object):
         self.ledit_hora_actual = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
         self.ledit_hora_actual.setGeometry(QtCore.QRect(490, 20, 113, 38))
         self.ledit_hora_actual.setObjectName("ledit_hora_actual")
+        self.btn_insertarHora = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.btn_insertarHora.setGeometry(QtCore.QRect(620, 20, 99, 38))
+        self.btn_insertarHora.setStyleSheet("background-color: rgb(114, 159, 207);")
+        self.btn_insertarHora.setObjectName("btn_insertarHora")
         self.widget.raise_()
         self.verticalScrollBar.raise_()
         self.widget_2.raise_()
@@ -550,11 +556,12 @@ class Ui_MainWindow(object):
         self.ledit_dir_paneles.raise_()
         self.lbl_hora_actual.raise_()
         self.ledit_hora_actual.raise_()
+        self.btn_insertarHora.raise_()
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1122, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1092, 30))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -690,6 +697,7 @@ class Ui_MainWindow(object):
         self.lbl_rooms.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-style:italic; text-decoration: underline;\">Rooms</span></p></body></html>"))
         self.lbl_paneles.setText(_translate("MainWindow", "Dirección paneles solares:"))
         self.lbl_hora_actual.setText(_translate("MainWindow", "Hora Actual:"))
+        self.btn_insertarHora.setText(_translate("MainWindow", "Insertar"))
 
 #Accuines de las puertas
     def accion_puerta_1(self):

@@ -1454,9 +1454,9 @@ border-color: rgb(136, 138, 133);</string>
         <widget class="QLabel" name="lbl_rooms">
          <property name="geometry">
           <rect>
-           <x>610</x>
+           <x>710</x>
            <y>20</y>
-           <width>351</width>
+           <width>291</width>
            <height>41</height>
           </rect>
          </property>
@@ -1510,6 +1510,22 @@ border-color: rgb(136, 138, 133);</string>
           </rect>
          </property>
         </widget>
+        <widget class="QPushButton" name="btn_insertarHora">
+         <property name="geometry">
+          <rect>
+           <x>620</x>
+           <y>20</y>
+           <width>99</width>
+           <height>38</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string>Insertar</string>
+         </property>
+        </widget>
         <zorder>widget</zorder>
         <zorder>verticalScrollBar</zorder>
         <zorder>widget_2</zorder>
@@ -1520,6 +1536,7 @@ border-color: rgb(136, 138, 133);</string>
         <zorder>ledit_dir_paneles</zorder>
         <zorder>lbl_hora_actual</zorder>
         <zorder>ledit_hora_actual</zorder>
+        <zorder>btn_insertarHora</zorder>
        </widget>
       </widget>
      </item>
