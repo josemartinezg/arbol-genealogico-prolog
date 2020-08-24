@@ -14,7 +14,9 @@ import random
 class RoomController:
     def __init__(self):
         self.prolog_instance = Prolog()
-        self.prolog_instance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
+        #self.prolog_instance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
+        self.prolog_instance.consult(
+            'C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
         self.graph = Digraph()
 
 
@@ -568,8 +570,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-
-        self.ledit_dir_paneles.setText(self.set_direccion_paneles)
+        angulo = self.set_direccion_paneles()
+        print(angulo)
+        self.ledit_dir_paneles.setText(angulo)
 
         # Botones de sensores de movimiento
         self.btn_movimiento1mas.clicked.connect(self.accion_movimiento_1mas)
@@ -595,6 +598,8 @@ class Ui_MainWindow(object):
         self.btn_luz2.clicked.connect(self.accion_luz_2)
         self.btn_luz3.clicked.connect(self.accion_luz_3)
         self.btn_luz4.clicked.connect(self.accion_luz_4)
+        #Boton paneles
+        self.btn_insertarHora.clicked.connect(self.insertar_hora)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -941,7 +946,20 @@ class Ui_MainWindow(object):
                 self.btn_luz4.setText("Encender")
 
     def set_direccion_paneles(self):
-        query = self.
+        direcciones = set()
+        query = self.repositorio.prolog_instance.query("posicionPanel(panel1,Pos).")
+        for solution in query:
+            direcciones.add(solution["Pos"].capitalize())
+        return str(direcciones.pop())
+
+    def insertar_hora(self):
+        hora = self.ledit_hora_actual.text()
+        query = self.repositorio.prolog_instance.query("posiciones(Direccion," + hora + ").")
+        direcciones = set()
+        for solution in query:
+            direcciones.add(solution["Direccion"].capitalize())
+
+        self.ledit_dir_paneles.setText(str(direcciones.pop()))
 
 if __name__ == "__main__":
     import sys
