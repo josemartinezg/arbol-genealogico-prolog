@@ -14,7 +14,9 @@ import random
 class RoomController:
     def __init__(self):
         self.prolog_instance = Prolog()
-        self.prolog_instance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
+        #self.prolog_instance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
+        self.prolog_instance.consult(
+            'C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
         self.graph = Digraph()
 
 
