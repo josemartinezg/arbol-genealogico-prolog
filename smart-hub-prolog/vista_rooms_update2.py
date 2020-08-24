@@ -561,6 +561,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+
+        self.ledit_dir_paneles.setText(self.set_direccion_paneles)
+
         # Botones de sensores de movimiento
         self.btn_movimiento1mas.clicked.connect(self.accion_movimiento_1mas)
         self.btn_movimiento1menos.clicked.connect(self.accion_movimiento_1menos)
@@ -928,6 +931,9 @@ class Ui_MainWindow(object):
             if self.btn_luz4.text() == "Apagar":
                 self.ledit_luz4.setText("False")
                 self.btn_luz4.setText("Encender")
+
+    def set_direccion_paneles(self):
+        query = self.
 
 if __name__ == "__main__":
     import sys
