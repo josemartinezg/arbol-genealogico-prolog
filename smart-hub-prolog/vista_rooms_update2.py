@@ -569,7 +569,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        #COPIA ESTA CONFIG TAMBIEN
         angulo = self.set_direccion_paneles()
         print(angulo)
         self.ledit_dir_paneles.setText(angulo)
@@ -944,7 +944,7 @@ class Ui_MainWindow(object):
             if self.btn_luz4.text() == "Apagar":
                 self.ledit_luz4.setText("False")
                 self.btn_luz4.setText("Encender")
-
+    #COPIA ESTOS 2 METODOS!!!
     def set_direccion_paneles(self):
         direcciones = set()
         query = self.repositorio.prolog_instance.query("posicionPanel(panel1,Pos).")
