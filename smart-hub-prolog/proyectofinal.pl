@@ -1,10 +1,4 @@
-
-
-%-------------------------------------------------------------------
-%lo que he hecho:
-%Punto 3: Monitoreo
-
-%Lista de lugares *solo el lugar: [habitacion_1,habitacion2]
+ de lugares *solo el lugar: [habitacion_1,habitacion2]
 :- dynamic (lugares/2).
 
 %Lista de puertas *Nombre, Lugar, Tipo: [ (puerta_1,habitacion_1,Inte) ]
@@ -21,40 +15,15 @@
 :- dynamic (lucesApagadas/2).
 % DISPOSITIVOS *Nombre, lugar:
 %[ (aire_acondicionado, habitacion_1) ]
-:- dynamic (dispositivos/2).
-:- dynamic (dispositivosEncendidos/2).
-:- dynamic (dispositivosApagados/2).
+:- dynamic (dispositivos/3).
+:- dynamic (dispositivosEncendidos/3).
+:- dynamic (dispositivosApagados/3).
+:- dynamic (posicionPanel/2).
+:- dynamic (posiciones/2).
 %CONSUMO DIARIO
 :- dynamic (consumoDiario/2). %[consumo,dispositivo]
-%TEMPERATURAS
-:- dynamic (temperatura/2). %[consumo,dispositivo]
-
-ventanas(habitacion).
-ventanas(living).
-ventanas(terraza).
-ventanas(cocina).
-
-dispositivos(habitacion, sensorMovimiento).
-dispositivos(habitacion, sensorLuz).
-dispositivos(habitacion, sensorTemperatura).
-dispositivos(cocina, sensorHumo).
-
-habitaciones(cocina).
-habitaciones(habitacion).
-habitaciones(living).
-habitaciones(terraza).
-
-luces(luz_1, cocina).
-luces(luz_2, habitacion).
-luces(luz_3, living).
-luces(luz_4, terraza).
-
-puertas(puerta1, cocina, interior).
-puertas(puerta2, habitacion, interior).
-puertas(puerta3, terraza, exterior).
-puertas(puerta4, living, exterior).
-
-
+% TEMPERATURAS
+:- dynamic (temperaturas/2).
 
 % Protocolos: bloqueo y cierre de entradas principales y ventanas del
 % hogar, analizando sus estados y modificándolos de acuerdo a
@@ -62,14 +31,15 @@ puertas(puerta4, living, exterior).
 % representar problemas de seguridad para sus habitantes.
 
 %LUGARES
-agregar_lugar(Nombre):- assertz(habitaciones(Nombre,0)).
-remover_lugar(Nombre):- retract(habitaciones(Nombre,_)).
+agregar_lugar(Nombre):- assertz(lugares(Nombre,0)).
+remover_lugar(Nombre):- retract(lugares(Nombre,_)).
+mostar_lugares:-listing(lugares).
 
 %PUERTAS
 
 agregar_puerta(Nombre,Lugar,Tipo):- assertz(puertas(Nombre,Lugar,Tipo)),assertz(puertasCerradas(Nombre,Lugar,Tipo)).
 
-remover_puerta(Nombre,Lugar,Tipo):-retract(puertas(Nombre,Lugar,Tipo)).
+remover_puerta(Nombre,Lugar,Tipo):-retract(puertas(Nombre,Lugar,Tipo)),retract(puertasCerradas(Nombre,Lugar,Tipo));retract(puertas(Nombre,Lugar,Tipo)),retract(puertasAbiertas(Nombre,Lugar,Tipo)).
 
 abrir_puerta(Nombre,Lugar):-puertas(Nombre,Lugar,Tipo),retract(puertasCerradas(Nombre,Lugar,Tipo)),assertz(puertasAbiertas(Nombre,Lugar,Tipo)).
 cerrar_puerta(Nombre,Lugar):-puertas(Nombre,Lugar,Tipo),retract(puertasAbiertas(Nombre,Lugar,Tipo)),assertz(puertasCerradas(Nombre,Lugar,Tipo)).
@@ -79,7 +49,7 @@ cerrar_puerta(Nombre,Lugar):-puertas(Nombre,Lugar,Tipo),retract(puertasAbiertas(
 
 agregar_ventana(Nombre,Lugar):- assertz(ventanas(Nombre,Lugar)),assertz(ventanasCerradas(Nombre,Lugar)).
 
-remover_ventana(Nombre,Lugar):-retract(ventanas(Nombre,Lugar)).
+remover_ventana(Nombre,Lugar):-retractall(ventanas(Nombre,Lugar)),retractall(ventanasCerradas(Nombre,Lugar)),retractall(ventanasAbiertas(Nombre,Lugar)).
 
 abrir_ventana(Nombre,Lugar):-ventanas(Nombre,Lugar),retract(ventanasCerradas(Nombre,Lugar)),assertz(ventanasAbiertas(Nombre,Lugar)).
 cerrar_ventana(Nombre,Lugar):-ventanas(Nombre,Lugar),retract(ventanasAbiertas(Nombre,Lugar)),assertz(ventanasCerradas(Nombre,Lugar)).
@@ -94,16 +64,45 @@ encender_luz(Nombre,Lugar):-luces(Nombre,Lugar),retract(lucesApagadas(Nombre,Lug
 apagar_luz(Nombre,Lugar):-luces(Nombre,Lugar),retract(lucesEncendidas(Nombre,Lugar)),assertz(lucesApagadas(Nombre,Lugar)).
 
 % DISPOSITIVOS
-agregar_dispositivo(Nombre,Lugar):- assertz(dispositivos(Nombre,Lugar)),assertz(dispositivosApagados(Nombre,Lugar)).
+agregar_dispositivo(Nombre,Lugar,Tipo):- assertz(dispositivos(Nombre,Lugar,Tipo)),assertz(dispositivosApagados(Nombre,Lugar,Tipo)).
 
-remover_dispositivo(Nombre,Lugar):-retract(dispositivos(Nombre,Lugar)),retract(dispositivosApagados(Nombre,Lugar)).
+remover_dispositivo(Nombre,Lugar):-retract(dispositivos(Nombre,Lugar,Tipo)),retract(dispositivosApagados(Nombre,Lugar,Tipo)).
 
-encender_dispositivo(Nombre,Lugar):-dispositivos(Nombre,Lugar),retract(dispositivosApagados(Nombre,Lugar)),assertz(dispositivosEncendidos(Nombre,Lugar)).
-apagar_dispositivo(Nombre,Lugar):-dispositivos(Nombre,Lugar),retract(dispositivosEncendidos(Nombre,Lugar)),assertz(dispositivosApagados(Nombre,Lugar)).
-%CONSUMO DIARIO
-agregar_consumo(Dispositivo,Consumo):-dispositivos(Dispositivo,_),assertz(consumoDiario(Dispositivo,Consumo)).
-remover_consumo(Dispositivo):-dispositivos(Dispositivo,_),retract(consumoDiario(Dispositivo,_)).
+encender_dispositivo(Nombre,Lugar,Tipo):-dispositivos(Nombre,Lugar,Tipo),retract(dispositivosApagados(Nombre,Lugar,Tipo)),assertz(dispositivosEncendidos(Nombre,Lugar,Tipo)).
+
+apagar_dispositivo(Nombre,Lugar,Tipo):-dispositivos(Nombre,Lugar,Tipo),retract(dispositivosEncendidos(Nombre,Lugar,Tipo)),assertz(dispositivosApagados(Nombre,Lugar,Tipo)).
+
+% PANELES
+
+agregar_panel(Nombre,Lugar):- assertz(dispositivos(Nombre,Lugar,panel_solar)),assertz(dispositivosApagados(Nombre,Lugar,panel_solar)),assertz(posicionPanel(Nombre,0)).
+
+remover_panel(Nombre,Lugar):-retract(dispositivos(Nombre,Lugar,panel_solar)), retract(dispositivosApagados(Nombre,Lugar,panel_solar)),retract(posicionPanel(Nombre,0)).
+
+ver_paneles:-listing(dispositivos(_,_,panel_solar)).
+
+ver_posiciones_paneles:-listing(posicionPanel).
+
+agregar_posicion(Posicion,Hora):-assertz(posiciones(Posicion,Hora)).
+
+remover_posicion(Posicion,Hora):-retract(posiciones(Posicion,Hora)).
+
+ver_posiciones:-listing(posiciones).
+
+cambiar_posicion(PosicionNueva):-posicionPanel(Panel,Posicion),retract(posicionPanel(Panel,Posicion)),assertz(posicionPanel(Panel,PosicionNueva)).
+
+% CONSUMO DIARIO
+agregar_consumo(Dispositivo,Consumo):-dispositivos(Dispositivo,_,_),assertz(consumoDiario(Dispositivo,Consumo)).
+
+remover_consumo(Dispositivo):-dispositivos(Dispositivo,_,_),retract(consumoDiario(Dispositivo,_)).
+
 mostrar_consumos:-listing(consumoDiario).
+
+% TEMPERATURAS
+agregar_temperatura(Lugar,Grados):-assertz(temperaturas(Lugar,Grados)).
+
+remover_temperatura(Lugar,Grados):-retract(temperaturas(Lugar,Grados)).
+
+mostrar_temperaturas:-listing(temperaturas).
 
 
 % SENSOR MOVIMIENTO
@@ -112,11 +111,21 @@ actualizarCantidad(Nombre,Cantidad):-retract(lugares(Nombre,_)),assertz(lugares(
 
 % SENSOR TEMPERATURA
 
-%EN PROGRESO temperatura(Grados,Lugar):-
+temperatura(Grados,Lugar):-temperaturas(Lugar,SetGrados), Grados >= SetGrados,encenderRegaderas(Lugar).
+temperatura(Grados,Lugar):-temperaturas(Lugar,SetGrados), Grados < SetGrados,apagarRegaderas(Lugar).
 
 
 
 % EVENTOS:
+
+
+% AIRES ACONDICIONADOS CON 0 PERSONAS
+
+apagarAC(Lugar):- lugares(Lugar,Cantidad), Cantidad = 0,!,apagar_dispositivo(_,Lugar,aire_acondicionado).
+
+% MOVER PANELES SOLARES
+
+mover_paneles(Hora):- posiciones(Posicion,Hora),cambiar_posicion(Posicion).
 
 % DORMIR
 
@@ -130,7 +139,15 @@ durmiendoLuces:- lucesEncendidas(Nombre,Lugar),retract(lucesEncendidas(Nombre,Lu
 
 %%	si todos salen true se reutilizarían las reglas de durmiendo
 %%	porque es un evento parecido.
+
 salir(Lugar):-lugares(Lugar,Cantidad), Cantidad = 0.
+
+% REGADERAS
+
+encenderRegaderas(Lugar):- encender_dispositivo(_,Lugar,regadera).
+apagarRegaderas(Lugar):- apagar_dispositivo(_,Lugar,regadera).
+
+
 
 % ESTADO:
 
@@ -172,7 +189,6 @@ pseudoIf(todo):- write('Puertas Abiertas:'),
 		   write('Dispositivos encendidos:'),
 	           listing(dispositivosEncendidos),
 	           write('Dispositivos apagados:'),
-	           listing(dispositivosApagados).
-
-
-
+	           listing(dispositivosApagados),
+                   write('Consumos diarios:'),nl,
+	            listing(consumoDiario).
