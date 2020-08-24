@@ -14,13 +14,13 @@ from graphviz import Digraph
 class RoomController:
     def __init__(self):
         self.prolog_instance = Prolog()
-        self.prolog_instance.consult('C:/Users/jmlma/Documents/GitHub/arbol-genealogico-prolog/smart-hub-prolog/final.pl')
+        self.prolog_instance.consult('/home/saulfeliciano/IdeaProjects/arbol-genealogico-prolog/smart-hub-prolog/proyectofinal.pl')
         self.graph = Digraph()
 
 
     def cantidad_puertas(self):
         puertas = 0
-        query2 = self.prolog_instance.query("sensor(movimiento,habitacion)")
+        query2 = self.prolog_instance.query("puertas(Identificador,Habitacion,Ubicacion)")
         for puerta in query2:
             print(puerta)
             puertas = puertas+1
@@ -388,6 +388,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        #Botones de sensores de movimiento
+
+
         #Botones de la ventana
         self.btn_ventana1.clicked.connect(self.accion_ventana_1)
         self.btn_ventana2.clicked.connect(self.accion_ventana_2)
@@ -570,6 +573,17 @@ class Ui_MainWindow(object):
 
     def accion_ventana_4(self):
         codigo = "ventana_4"
+        habitacion = "master_bedroom"
+        if self.ledit_ventana4.text() == "Abrir":
+            self.ledit_ventana4.setText(self.repositorio.accionar_puerta_ventana("abrir_ventana", codigo, habitacion))
+            self.ledit_ventana4.setText("Cerrar")
+
+        elif self.ledit_ventana4.text() == "Cerrar":
+            self.ledit_ventana4.setText(self.repositorio.accionar_puerta_ventana("cerrar_ventana", codigo, habitacion))
+            self.ledit_ventana4.setText("Abrir")
+
+    def accion_movimiento_1(self):
+        nombre = "movimiento_1"
         habitacion = "master_bedroom"
         if self.ledit_ventana4.text() == "Abrir":
             self.ledit_ventana4.setText(self.repositorio.accionar_puerta_ventana("abrir_ventana", codigo, habitacion))
