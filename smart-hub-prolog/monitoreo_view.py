@@ -336,6 +336,7 @@ class Ui_MainWindow(object):
         self.btn_puertas.clicked.connect(self.agregar_puerta)
         self.btn_ventana.clicked.connect(self.agregar_ventana)
         self.btn_paneles.clicked.connect(self.agregar_paneles)
+        self.btn_limpiar_casa.clicked.connect(self.limpiar_casa)
 
 
         self.retranslateUi(MainWindow)
@@ -526,6 +527,18 @@ class Ui_MainWindow(object):
             self.lista_paneles.addItems(paneles)
         else:
             self.display_error_qt()
+
+    def limpiar_casa(self):
+        query = self.repositorio.prolog_instance.query("nukeAll.")
+        for solution in query:
+            print(solution)
+
+        self.lista_dispositivos.clear()
+        self.lista_ventanas.clear()
+        self.lista_paneles.clear()
+        self.lista_luces.clear()
+        self.lista_habitaciones.clear()
+        self.lista_puertas.clear()
 
 if __name__ == "__main__":
     import sys

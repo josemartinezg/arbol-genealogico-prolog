@@ -835,7 +835,7 @@
      <string>Limpiar Casa</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lbl_puertas_tipo_2">
+   <widget class="QLabel" name="lbl_dispositivos_tipo">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -848,7 +848,7 @@
      <string>Tipo</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="cbx_puertas_2">
+   <widget class="QComboBox" name="cbx_dispositivos_tipo">
     <property name="geometry">
      <rect>
       <x>250</x>
