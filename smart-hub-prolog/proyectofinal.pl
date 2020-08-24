@@ -1,4 +1,4 @@
- de lugares *solo el lugar: [habitacion_1,habitacion2]
+ %de lugares *solo el lugar: [habitacion_1,habitacion2]
 :- dynamic (lugares/2).
 
 %Lista de puertas *Nombre, Lugar, Tipo: [ (puerta_1,habitacion_1,Inte) ]
@@ -30,10 +30,13 @@ ventanas(ventan2, living).
 ventanas(ventana3, terraza).
 ventanas(ventana4, cocina).
 
-dispositivos(habitacion, sensorMovimiento).
-dispositivos(habitacion, sensorLuz).
-dispositivos(habitacion, sensorTemperatura).
-dispositivos(cocina, sensorHumo).
+dispositivos(ac_hab, habitacion, ac).
+dispositivos(panel_techo1, techo, panel_solar).
+dispositivos(panel_techo2, techo, panel_solar).
+dispositivos(regadera_cocina, cocina, regadera).
+%dispositivos(habitacion, sensorLuz).
+%dispositivos(habitacion, sensorTemperatura).
+%dispositivos(cocina, sensorHumo).
 
 lugares(cocina,5).
 lugares(habitacion,2).

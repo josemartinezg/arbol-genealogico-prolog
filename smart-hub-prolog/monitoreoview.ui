@@ -20,7 +20,7 @@
       <x>20</x>
       <y>140</y>
       <width>221</width>
-      <height>191</height>
+      <height>221</height>
      </rect>
     </property>
     <property name="font">
@@ -92,8 +92,8 @@
    <widget class="QPushButton" name="btn_dispositivo">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>270</y>
+      <x>380</x>
+      <y>330</y>
       <width>91</width>
       <height>38</height>
      </rect>
@@ -128,13 +128,13 @@
      </rect>
     </property>
     <property name="text">
-     <string>Habitación</string>
+     <string>Lugar</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_habitacion">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>870</x>
       <y>210</y>
       <width>91</width>
       <height>38</height>
@@ -150,20 +150,20 @@
    <widget class="QLabel" name="lbl_habitacion">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>740</x>
       <y>140</y>
       <width>101</width>
       <height>22</height>
      </rect>
     </property>
     <property name="text">
-     <string>Habitación</string>
+     <string>Lugar</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="txt_habitacion">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>740</x>
       <y>170</y>
       <width>211</width>
       <height>31</height>
@@ -184,33 +184,33 @@
    <widget class="QLabel" name="lbl_habitaciones_list">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>110</y>
       <width>111</width>
       <height>22</height>
      </rect>
     </property>
     <property name="text">
-     <string>Lista de Habitaciones</string>
+     <string>Lista de Lugares</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_habitacion_2">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>70</y>
       <width>191</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Habitaciones&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Lugares&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>100</y>
       <width>451</width>
       <height>16</height>
@@ -267,7 +267,7 @@
    <widget class="QLineEdit" name="txt_puerta">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>740</x>
       <y>460</y>
       <width>211</width>
       <height>31</height>
@@ -295,13 +295,13 @@
      </rect>
     </property>
     <property name="text">
-     <string>Habitación</string>
+     <string>Lugar</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_puertas_list">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>400</y>
       <width>111</width>
       <height>22</height>
@@ -342,7 +342,7 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>390</y>
       <width>451</width>
       <height>16</height>
@@ -368,8 +368,8 @@
    <widget class="QPushButton" name="btn_puertas">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>660</y>
+      <x>860</x>
+      <y>630</y>
       <width>91</width>
       <height>38</height>
      </rect>
@@ -405,7 +405,7 @@
    <widget class="QLabel" name="lbl_puerta">
     <property name="geometry">
      <rect>
-      <x>760</x>
+      <x>740</x>
       <y>430</y>
       <width>101</width>
       <height>22</height>
@@ -431,7 +431,7 @@
    <widget class="QLabel" name="lbl_habitacion1_4">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>360</y>
       <width>191</width>
       <height>31</height>
@@ -444,21 +444,21 @@
    <widget class="QLabel" name="lbl_puerta_hab">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>510</y>
+      <x>740</x>
+      <y>500</y>
       <width>101</width>
       <height>22</height>
      </rect>
     </property>
     <property name="text">
-     <string>Habitación</string>
+     <string>Lugar</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbx_puerta_hab">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>540</y>
+      <x>740</x>
+      <y>520</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -472,8 +472,8 @@
    <widget class="QComboBox" name="cbx_puertas">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>620</y>
+      <x>740</x>
+      <y>580</y>
       <width>211</width>
       <height>31</height>
      </rect>
@@ -487,8 +487,8 @@
    <widget class="QLabel" name="lbl_puertas_tipo">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>590</y>
+      <x>740</x>
+      <y>560</y>
       <width>101</width>
       <height>22</height>
      </rect>
@@ -507,7 +507,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Habitación</string>
+     <string>Lugar</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbx_ventana_hab">
@@ -630,10 +630,10 @@
    <widget class="QListWidget" name="lista_habitaciones">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>140</y>
       <width>221</width>
-      <height>191</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="font">
@@ -648,7 +648,7 @@
       <x>20</x>
       <y>430</y>
       <width>221</width>
-      <height>191</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="font">
@@ -660,10 +660,10 @@
    <widget class="QListWidget" name="lista_puertas">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>510</x>
       <y>430</y>
       <width>221</width>
-      <height>191</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="font">
@@ -678,7 +678,7 @@
       <x>1010</x>
       <y>140</y>
       <width>221</width>
-      <height>191</height>
+      <height>211</height>
      </rect>
     </property>
     <property name="font">
@@ -686,6 +686,182 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+   </widget>
+   <widget class="QLabel" name="lbl_paneles_nombre">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>420</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nombre</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lista_paneles">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>430</y>
+      <width>221</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbx_paneles_hab">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>520</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>&lt;Seleccionar&gt;</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="Line" name="line_6">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>390</y>
+      <width>451</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_paneles_hab">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>490</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Lugar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_paneles_list">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>400</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Lista de Paneles Solares</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_paneles">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>580</y>
+      <width>91</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(114, 159, 207);</string>
+    </property>
+    <property name="text">
+     <string>Agregar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_paneles">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>360</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Paneles Solares&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_paneles">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>450</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nombre</string>
+    </property>
+    <property name="placeholderText">
+     <string>Escriba un nombre</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_limpiar_casa">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>20</y>
+      <width>91</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(114, 159, 207);</string>
+    </property>
+    <property name="text">
+     <string>Limpiar Casa</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_puertas_tipo_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>270</y>
+      <width>101</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tipo</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbx_puertas_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>290</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>&lt;Seleccionar&gt;</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
