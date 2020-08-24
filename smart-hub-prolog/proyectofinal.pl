@@ -1,4 +1,8 @@
- de lugares *solo el lugar: [habitacion_1,habitacion2]
+%-------------------------------------------------------------------
+%lo que he hecho:
+%Punto 3: Monitoreo
+
+%Lista de lugares *solo el lugar: [habitacion_1,habitacion2]
 :- dynamic (lugares/2).
 
 %Lista de puertas *Nombre, Lugar, Tipo: [ (puerta_1,habitacion_1,Inte) ]
@@ -29,6 +33,47 @@
 % hogar, analizando sus estados y modificándolos de acuerdo a
 % evaluaciones de eventos específicos que ocurran y que considere puedan
 % representar problemas de seguridad para sus habitantes.
+
+%HECHOS DE PRUEBA
+ventanas(ventana1, habitacion).
+ventanas(ventan2, living).
+ventanas(ventana3, terraza).
+ventanas(ventana4, cocina).
+
+dispositivos(habitacion, sensorMovimiento).
+dispositivos(habitacion, sensorLuz).
+dispositivos(habitacion, sensorTemperatura).
+dispositivos(cocina, sensorHumo).
+
+lugares(cocina,5).
+lugares(habitacion,2).
+lugares(living,8).
+lugares(terraza,10).
+
+luces(luz_1, cocina).
+luces(luz_2, habitacion).
+luces(luz_3, living).
+luces(luz_4, terraza).
+
+puertas(puerta1, cocina, interior).
+puertas(puerta2, habitacion, interior).
+puertas(puerta3, terraza, exterior).
+puertas(puerta4, living, exterior).
+
+dispositivos(panel1, techo, panel_solar).
+dispositivos(panel2, techo, panel_solar).
+dispositivos(panel3, techo, panel_solar).
+dispositivos(panel4, techo, panel_solar).
+
+posiciones(north, 0).
+posiciones(east, 8).
+posiciones(west, 15).
+posiciones(south, 20).
+
+posicionPanel(panel1, north).
+posicionPanel(panel2, north).
+posicionPanel(panel3, north).
+posicionPanel(panel4, north).
 
 %LUGARES
 agregar_lugar(Nombre):- assertz(lugares(Nombre,0)).
@@ -137,8 +182,8 @@ durmiendoLuces:- lucesEncendidas(Nombre,Lugar),retract(lucesEncendidas(Nombre,Lu
 
 % SALIR
 
-%%	si todos salen true se reutilizarían las reglas de durmiendo
-%%	porque es un evento parecido.
+%%  si todos salen true se reutilizarían las reglas de durmiendo
+%%  porque es un evento parecido.
 
 salir(Lugar):-lugares(Lugar,Cantidad), Cantidad = 0.
 
@@ -152,43 +197,45 @@ apagarRegaderas(Lugar):- apagar_dispositivo(_,Lugar,regadera).
 % ESTADO:
 
 estado:- write('¿Qué desea ver?:'),nl,
-	 write('(puertas, ventanas, luces, dispositivos, consumos diarios, o todo)'),nl,
-	 read(Opcion),
-	 pseudoIf(Opcion).
+   write('(puertas, ventanas, luces, dispositivos, consumos diarios, o todo)'),nl,
+   read(Opcion),
+   pseudoIf(Opcion).
 
 pseudoIf(puertas):-write('Puertas Abiertas:'),
-	           listing(puertasAbiertas),
-	           write('Puertas Cerradas:'),
-	           listing(puertasCerradas).
+             listing(puertasAbiertas),
+             write('Puertas Cerradas:'),
+             listing(puertasCerradas).
 pseudoIf(ventanas):-write('Ventanas Abiertas:'),
-	           listing(ventanasAbiertas),
-	           write('Ventanas Cerradas:'),
-	           listing(ventanasCerradas).
+             listing(ventanasAbiertas),
+             write('Ventanas Cerradas:'),
+             listing(ventanasCerradas).
 pseudoIf(luces):-  write('Luces encendidas:'),
-	           listing(lucesEncendidas),
-	           write('Luces apagadas:'),
-	           listing(lucesApagadas).
+             listing(lucesEncendidas),
+             write('Luces apagadas:'),
+             listing(lucesApagadas).
 pseudoIf(dispositivos):-write('Dispositivos encendidos:'),
-	           listing(dispositivosEncendidos),
-	           write('Dispositivos apagados:'),
-	           listing(dispositivosApagados).
+             listing(dispositivosEncendidos),
+             write('Dispositivos apagados:'),
+             listing(dispositivosApagados).
 pseudoIf(consumos):-write('Consumos diarios:'),nl,
-	            listing(consumoDiario).
+              listing(consumoDiario).
 pseudoIf(todo):- write('Puertas Abiertas:'),
-	           listing(puertasAbiertas),
-	           write('Puertas Cerradas:'),
-	           listing(puertasCerradas),
+             listing(puertasAbiertas),
+             write('Puertas Cerradas:'),
+             listing(puertasCerradas),
                    write('Ventanas Abiertas:'),
-	           listing(ventanasAbiertas),
-	           write('Ventanas Cerradas:'),
-	           listing(ventanasCerradas),
-		   write('Luces encendidas:'),
-	           listing(lucesEncendidas),
-	           write('Luces apagadas:'),
-	           listing(lucesApagadas),
-		   write('Dispositivos encendidos:'),
-	           listing(dispositivosEncendidos),
-	           write('Dispositivos apagados:'),
-	           listing(dispositivosApagados),
+             listing(ventanasAbiertas),
+             write('Ventanas Cerradas:'),
+             listing(ventanasCerradas),
+       write('Luces encendidas:'),
+             listing(lucesEncendidas),
+             write('Luces apagadas:'),
+             listing(lucesApagadas),
+       write('Dispositivos encendidos:'),
+             listing(dispositivosEncendidos),
+             write('Dispositivos apagados:'),
+             listing(dispositivosApagados),
                    write('Consumos diarios:'),nl,
-	            listing(consumoDiario).
+              listing(consumoDiario).
+
+nukeAll:- retractall(puertas(_,_,_)),retractall(puertasAbiertas(_,_,_)),retractall(puertasCerradas(_,_,_)),retractall(ventanas(_,_)),retractall(ventanasAbiertas(_,_)),retractall(ventanasCerradas(_,_)),retractall(dispositivos(_,_,_)),retractall(dispositivosEncendidos(_,_,_)),retractall(dispositivosApagados(_,_,_)),retractall(posicionPanel(_,_)),retractall(posiciones(_,_)),retractall(consumoDiario(_,_)),retractall(temperaturas(_,_)).
