@@ -29,6 +29,32 @@
 %TEMPERATURAS
 :- dynamic (temperatura/2). %[consumo,dispositivo]
 
+ventanas(ventana1, habitacion).
+ventanas(ventan2, living).
+ventanas(ventana3, terraza).
+ventanas(ventana4, cocina).
+
+dispositivos(habitacion, sensorMovimiento).
+dispositivos(habitacion, sensorLuz).
+dispositivos(habitacion, sensorTemperatura).
+dispositivos(cocina, sensorHumo).
+
+lugares(cocina,5).
+lugares(habitacion,2).
+lugares(living,8).
+lugares(terraza,10).
+
+luces(luz_1, cocina).
+luces(luz_2, habitacion).
+luces(luz_3, living).
+luces(luz_4, terraza).
+
+puertas(puerta1, cocina, interior).
+puertas(puerta2, habitacion, interior).
+puertas(puerta3, terraza, exterior).
+puertas(puerta4, living, exterior).
+
+
 % Protocolos: bloqueo y cierre de entradas principales y ventanas del
 % hogar, analizando sus estados y modificándolos de acuerdo a
 % evaluaciones de eventos específicos que ocurran y que considere puedan
@@ -40,10 +66,14 @@ ventanas(ventan2, living).
 ventanas(ventana3, terraza).
 ventanas(ventana4, cocina).
 
-dispositivos(habitacion, sensorMovimiento).
-dispositivos(habitacion, sensorLuz).
-dispositivos(habitacion, sensorTemperatura).
-dispositivos(cocina, sensorHumo).
+dispositivos(ac_hab, habitacion, ac).
+dispositivos(panel_techo1, techo, panel_solar).
+dispositivos(panel_techo2, techo, panel_solar).
+dispositivos(regadera_cocina, cocina, regadera).
+%dispositivos(habitacion, sensorMovimiento).
+%dispositivos(habitacion, sensorLuz).
+%dispositivos(habitacion, sensorTemperatura).
+%dispositivos(cocina, sensorHumo).
 
 lugares(cocina,5).
 lugares(habitacion,2).
