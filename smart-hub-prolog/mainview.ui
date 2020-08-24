@@ -34,8 +34,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1087</width>
-          <height>777</height>
+          <width>1085</width>
+          <height>775</height>
          </rect>
         </property>
         <widget class="QScrollBar" name="verticalScrollBar">
@@ -135,12 +135,12 @@ border-color: rgb(136, 138, 133);</string>
            <string>Encender</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="btn_movimiento1">
+         <widget class="QPushButton" name="btn_movimiento1mas">
           <property name="geometry">
            <rect>
             <x>320</x>
             <y>80</y>
-            <width>99</width>
+            <width>51</width>
             <height>38</height>
            </rect>
           </property>
@@ -148,7 +148,7 @@ border-color: rgb(136, 138, 133);</string>
            <string notr="true">background-color: rgb(114, 159, 207);</string>
           </property>
           <property name="text">
-           <string>Nada</string>
+           <string>+</string>
           </property>
          </widget>
          <widget class="QPushButton" name="btn_luz1">
@@ -342,6 +342,22 @@ border-color: rgb(136, 138, 133);</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Habitación 1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="btn_movimiento1menos">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>80</y>
+            <width>51</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_2" native="true">
          <property name="geometry">
@@ -427,12 +443,12 @@ border-color: rgb(136, 138, 133);</string>
            <string>Encender</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="btn_movimiento2">
+         <widget class="QPushButton" name="btn_movimiento2mas">
           <property name="geometry">
            <rect>
             <x>320</x>
             <y>80</y>
-            <width>99</width>
+            <width>51</width>
             <height>38</height>
            </rect>
           </property>
@@ -440,7 +456,7 @@ border-color: rgb(136, 138, 133);</string>
            <string notr="true">background-color: rgb(114, 159, 207);</string>
           </property>
           <property name="text">
-           <string>Nada</string>
+           <string>+</string>
           </property>
          </widget>
          <widget class="QPushButton" name="btn_luz2">
@@ -634,6 +650,22 @@ border-color: rgb(136, 138, 133);</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Habitación 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="btn_movimiento2menos">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>80</y>
+            <width>51</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_3" native="true">
          <property name="geometry">
@@ -719,12 +751,12 @@ border-color: rgb(136, 138, 133);</string>
            <string>Encender</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="btn_movimiento3">
+         <widget class="QPushButton" name="btn_movimiento3mas">
           <property name="geometry">
            <rect>
             <x>320</x>
             <y>80</y>
-            <width>99</width>
+            <width>51</width>
             <height>38</height>
            </rect>
           </property>
@@ -732,7 +764,7 @@ border-color: rgb(136, 138, 133);</string>
            <string notr="true">background-color: rgb(114, 159, 207);</string>
           </property>
           <property name="text">
-           <string>Nada</string>
+           <string>+</string>
           </property>
          </widget>
          <widget class="QPushButton" name="btn_luz3">
@@ -926,6 +958,22 @@ border-color: rgb(136, 138, 133);</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Habitación 3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="btn_movimiento3menos">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>80</y>
+            <width>51</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_4" native="true">
          <property name="geometry">
@@ -1011,12 +1059,12 @@ border-color: rgb(136, 138, 133);</string>
            <string>Encender</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="btn_movimiento4">
+         <widget class="QPushButton" name="btn_movimiento4mas">
           <property name="geometry">
            <rect>
             <x>320</x>
             <y>80</y>
-            <width>99</width>
+            <width>51</width>
             <height>38</height>
            </rect>
           </property>
@@ -1024,7 +1072,7 @@ border-color: rgb(136, 138, 133);</string>
            <string notr="true">background-color: rgb(114, 159, 207);</string>
           </property>
           <property name="text">
-           <string>Nada</string>
+           <string>+</string>
           </property>
          </widget>
          <widget class="QPushButton" name="btn_luz4">
@@ -1218,6 +1266,22 @@ border-color: rgb(136, 138, 133);</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Habitación 4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
+         <widget class="QPushButton" name="btn_movimiento4menos">
+          <property name="geometry">
+           <rect>
+            <x>370</x>
+            <y>80</y>
+            <width>51</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QLabel" name="lbl_rooms">
          <property name="geometry">
@@ -1312,7 +1376,7 @@ border-color: rgb(136, 138, 133);</string>
      <x>0</x>
      <y>0</y>
      <width>1087</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
