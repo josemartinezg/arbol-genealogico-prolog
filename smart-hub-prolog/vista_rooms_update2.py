@@ -117,6 +117,36 @@ class RoomController:
                 if valor["Luz"] == codigo:
                     return "False"
 
+        elif relacion == "encender_dispositivo":
+            flag = False
+            query_verificar = self.prolog_instance.query("dispositivosApagados(Dispositivo," + habitacion + "," + tipo + ")")
+            for verificar in query_verificar:
+                if verificar["Dispositivo"] == codigo:
+                    flag = True
+            if flag is True:
+                queryRetract = self.prolog_instance.retract(
+                    "dispositivosApagados(" + codigo + "," + habitacion + "," + tipo + ")")
+            query2 = self.prolog_instance.assertz("dispositivosEncendidos(" + codigo + "," + habitacion + "," + tipo + ")")
+            query3 = self.prolog_instance.query("dispositivosEncendidos(Dispositivo," + habitacion + "," + tipo + ")")
+            for valor in query3:
+                if valor["Dispositivo"] == codigo:
+                    return "True"
+
+        elif relacion == "apagar_dispositivo":
+            flag = False
+            query_verificar = self.prolog_instance.query("dispositivosEncendidos(Dispositivo," + habitacion + "," + tipo + ")")
+            for verificar in query_verificar:
+                if verificar["Dispositivo"] == codigo:
+                    flag = True
+            if flag is True:
+                queryRetract = self.prolog_instance.retract(
+                    "dispositivosEncendidos(" + codigo + "," + habitacion + "," + tipo + ")")
+            query2 = self.prolog_instance.assertz("dispositivosApagados(" + codigo + "," + habitacion + "," + tipo + ")")
+            query3 = self.prolog_instance.query("dispositivosApagados(Dispositivo," + habitacion + "," + tipo + ")")
+            for valor in query3:
+                if valor["Dispositivo"] == codigo:
+                    return "False"
+
     def agregar_persona_habitacion(self, relacion, habitacion, cantidad):
         query = self.prolog_instance.query(relacion + "(" + habitacion + "," + cantidad + ")")
         query2 = self.prolog_instance.query(relacion + "(" + habitacion + ",Cantidad)")
@@ -567,6 +597,9 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        angulo = self.set_direccion_paneles()
+        print(angulo)
+        self.ledit_dir_paneles.setText(angulo)
 
         # Botones de sensores de movimiento
         self.btn_movimiento1mas.clicked.connect(self.accion_movimiento_1mas)
@@ -592,6 +625,13 @@ class Ui_MainWindow(object):
         self.btn_luz2.clicked.connect(self.accion_luz_2)
         self.btn_luz3.clicked.connect(self.accion_luz_3)
         self.btn_luz4.clicked.connect(self.accion_luz_4)
+        # Botones de los aires
+        self.btn_aire1.clicked.connect(self.accion_aire_1)
+        self.btn_aire2.clicked.connect(self.accion_aire_2)
+        self.btn_aire3.clicked.connect(self.accion_aire_3)
+        self.btn_aire4.clicked.connect(self.accion_aire_4)
+        # Boton paneles
+        self.btn_insertarHora.clicked.connect(self.insertar_hora)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -862,6 +902,7 @@ class Ui_MainWindow(object):
         cantrand = 0
         self.ledit_movimiento1.setText(self.repositorio.agregar_persona_habitacion("actualizarCantidad", habitacion, str(cantrand)))
         self.cambiar_mensajes_a_apagado()
+        self.apagar_aire_acondicionado()
 
 
     def accion_movimiento_2mas(self):
@@ -874,6 +915,7 @@ class Ui_MainWindow(object):
         cantrand = 0
         self.ledit_movimiento2.setText(self.repositorio.agregar_persona_habitacion("actualizarCantidad", habitacion, str(cantrand)))
         self.cambiar_mensajes_a_apagado()
+        self.apagar_aire_acondicionado()
 
     def accion_movimiento_3mas(self):
         habitacion = "patio"
@@ -885,6 +927,7 @@ class Ui_MainWindow(object):
         cantrand = 0
         self.ledit_movimiento3.setText(self.repositorio.agregar_persona_habitacion("actualizarCantidad", habitacion, str(cantrand)))
         self.cambiar_mensajes_a_apagado()
+        self.apagar_aire_acondicionado()
 
     def accion_movimiento_4mas(self):
         habitacion = "master_bedroom"
@@ -896,6 +939,96 @@ class Ui_MainWindow(object):
         cantrand = 0
         self.ledit_movimiento4.setText(self.repositorio.agregar_persona_habitacion("actualizarCantidad", habitacion, str(cantrand)))
         self.cambiar_mensajes_a_apagado()
+        self.apagar_aire_acondicionado()
+
+    def accion_aire_1(self):
+        codigo = "aire1"
+        habitacion = "cocina"
+        tipo = "aire_acondicionado"
+        if self.btn_aire1.text() == "Encender":
+            self.ledit_aire1.setText(self.repositorio.accionar_puerta_ventana("encender_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire1.setText("Apagar")
+
+        elif self.btn_aire1.text() == "Apagar":
+            self.ledit_aire1.setText(self.repositorio.accionar_puerta_ventana("apagar_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire1.setText("Encender")
+
+    def accion_aire_2(self):
+        codigo = "aire2"
+        habitacion = "habitacion"
+        tipo = "aire_acondicionado"
+        if self.btn_aire2.text() == "Encender":
+            self.ledit_aire2.setText(self.repositorio.accionar_puerta_ventana("encender_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire2.setText("Apagar")
+
+        elif self.btn_aire2.text() == "Apagar":
+            self.ledit_aire2.setText(self.repositorio.accionar_puerta_ventana("apagar_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire2.setText("Encender")
+
+    def accion_aire_3(self):
+        codigo = "aire3"
+        habitacion = "terraza"
+        tipo = "aire_acondicionado"
+        if self.btn_aire3.text() == "Encender":
+            self.ledit_aire3.setText(self.repositorio.accionar_puerta_ventana("encender_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire3.setText("Apagar")
+
+        elif self.btn_aire3.text() == "Apagar":
+            self.ledit_aire3.setText(self.repositorio.accionar_puerta_ventana("apagar_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire3.setText("Encender")
+
+    def accion_aire_4(self):
+        codigo = "aire4"
+        habitacion = "living"
+        tipo = "aire_acondicionado"
+        if self.btn_aire4.text() == "Encender":
+            self.ledit_aire4.setText(self.repositorio.accionar_puerta_ventana("encender_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire4.setText("Apagar")
+
+        elif self.btn_aire4.text() == "Apagar":
+            self.ledit_aire4.setText(self.repositorio.accionar_puerta_ventana("apagar_dispositivo", codigo, habitacion, tipo))
+            self.btn_aire4.setText("Encender")
+
+    def apagar_aire_acondicionado(self):
+        if self.ledit_movimiento1.text() == "0":
+            relacion = "apagar_dispositivo"
+            codigo = "aire1"
+            habitacion = "cocina"
+            tipo = "aire_acondicionado"
+            self.repositorio.accionar_puerta_ventana(relacion, codigo, habitacion, tipo)
+            if self.btn_aire1.text() == "Apagar":
+                self.ledit_aire1.setText("False")
+                self.btn_aire1.setText("Encender")
+
+        if self.ledit_movimiento2.text() == "0":
+            relacion = "apagar_dispositivo"
+            codigo = "aire2"
+            habitacion = "habitacion"
+            tipo = "aire_acondicionado"
+            self.repositorio.accionar_puerta_ventana(relacion, codigo, habitacion, tipo)
+            if self.btn_aire2.text() == "Apagar":
+                self.ledit_aire2.setText("False")
+                self.btn_aire2.setText("Encender")
+
+        if self.ledit_movimiento3.text() == "0":
+            relacion = "apagar_dispositivo"
+            codigo = "aire3"
+            habitacion = "terraza"
+            tipo = "aire_acondicionado"
+            self.repositorio.accionar_puerta_ventana(relacion, codigo, habitacion, tipo)
+            if self.btn_aire3.text() == "Apagar":
+                self.ledit_aire3.setText("False")
+                self.btn_aire3.setText("Encender")
+
+        if self.ledit_movimiento4.text() == "0":
+            relacion = "apagar_dispositivo"
+            codigo = "aire4"
+            habitacion = "living"
+            tipo = "aire_acondicionado"
+            self.repositorio.accionar_puerta_ventana(relacion, codigo, habitacion, tipo)
+            if self.btn_aire4.text() == "Apagar":
+                self.ledit_aire4.setText("False")
+                self.btn_aire4.setText("Encender")
 
     def cambiar_mensajes_a_apagado(self):
         if self.ledit_movimiento1.text() == "0" and self.ledit_movimiento2.text() == "0" and self.ledit_movimiento3.text() == "0" and self.ledit_movimiento4.text() == "0":
@@ -937,6 +1070,21 @@ class Ui_MainWindow(object):
                 self.ledit_luz4.setText("False")
                 self.btn_luz4.setText("Encender")
 
+    def set_direccion_paneles(self):
+        direcciones = set()
+        query = self.repositorio.prolog_instance.query("posicionPanel(panel1,Pos).")
+        for solution in query:
+            direcciones.add(solution["Pos"].capitalize())
+        return str(direcciones.pop())
+
+    def insertar_hora(self):
+        hora = self.ledit_hora_actual.text()
+        query = self.repositorio.prolog_instance.query("posiciones(Direccion," + hora + ").")
+        direcciones = set()
+        for solution in query:
+            direcciones.add(solution["Direccion"].capitalize())
+
+        self.ledit_dir_paneles.setText(str(direcciones.pop()))
 
 if __name__ == "__main__":
     import sys
