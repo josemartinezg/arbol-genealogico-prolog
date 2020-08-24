@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1087</width>
-    <height>811</height>
+    <width>1092</width>
+    <height>846</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
            <x>40</x>
            <y>80</y>
            <width>451</width>
-           <height>301</height>
+           <height>341</height>
           </rect>
          </property>
          <property name="mouseTracking">
@@ -358,6 +358,48 @@ border-color: rgb(136, 138, 133);</string>
            <string>-</string>
           </property>
          </widget>
+         <widget class="QLabel" name="lbl_aire1">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>290</y>
+            <width>91</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aire Acond.</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="ledit_aire1">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>290</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>False</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_aire1">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>280</y>
+            <width>99</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>Encender</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_2" native="true">
          <property name="geometry">
@@ -365,7 +407,7 @@ border-color: rgb(136, 138, 133);</string>
            <x>520</x>
            <y>80</y>
            <width>451</width>
-           <height>301</height>
+           <height>341</height>
           </rect>
          </property>
          <property name="mouseTracking">
@@ -666,14 +708,56 @@ border-color: rgb(136, 138, 133);</string>
            <string>-</string>
           </property>
          </widget>
+         <widget class="QLabel" name="lbl_aire2">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>290</y>
+            <width>91</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aire Acond.</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="ledit_aire2">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>290</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>False</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_aire2">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>280</y>
+            <width>99</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>Encender</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_3" native="true">
          <property name="geometry">
           <rect>
            <x>40</x>
-           <y>400</y>
+           <y>430</y>
            <width>451</width>
-           <height>301</height>
+           <height>331</height>
           </rect>
          </property>
          <property name="mouseTracking">
@@ -974,14 +1058,56 @@ border-color: rgb(136, 138, 133);</string>
            <string>-</string>
           </property>
          </widget>
+         <widget class="QLabel" name="lbl_aire3">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>290</y>
+            <width>91</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aire Acond.</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="ledit_aire3">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>290</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>False</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_aire3">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>280</y>
+            <width>99</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>Encender</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_4" native="true">
          <property name="geometry">
           <rect>
            <x>520</x>
-           <y>400</y>
+           <y>430</y>
            <width>451</width>
-           <height>301</height>
+           <height>331</height>
           </rect>
          </property>
          <property name="mouseTracking">
@@ -1282,6 +1408,48 @@ border-color: rgb(136, 138, 133);</string>
            <string>-</string>
           </property>
          </widget>
+         <widget class="QLabel" name="lbl_aire4">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>290</y>
+            <width>91</width>
+            <height>22</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Aire Acond.</string>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="ledit_aire4">
+          <property name="geometry">
+           <rect>
+            <x>170</x>
+            <y>290</y>
+            <width>101</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>False</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_aire4">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>280</y>
+            <width>99</width>
+            <height>38</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(114, 159, 207);</string>
+          </property>
+          <property name="text">
+           <string>Encender</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QLabel" name="lbl_rooms">
          <property name="geometry">
@@ -1296,62 +1464,50 @@ border-color: rgb(136, 138, 133);</string>
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt; font-style:italic; text-decoration: underline;&quot;&gt;Rooms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="btn_agregarpuerta">
+        <widget class="QLabel" name="lbl_paneles">
          <property name="geometry">
           <rect>
-           <x>50</x>
-           <y>20</y>
-           <width>121</width>
-           <height>38</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(114, 159, 207);</string>
-         </property>
-         <property name="text">
-          <string>Agregar Puerta</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="btn_eliminarpuerta">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>20</y>
-           <width>121</width>
-           <height>38</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(114, 159, 207);</string>
-         </property>
-         <property name="text">
-          <string>Eliminar Puerta</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="lbl_cant_puertas">
-         <property name="geometry">
-          <rect>
-           <x>340</x>
+           <x>70</x>
            <y>30</y>
-           <width>101</width>
+           <width>191</width>
            <height>22</height>
           </rect>
          </property>
          <property name="text">
-          <string>Cant. Puerta</string>
+          <string>Dirección paneles solares:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_cant_puertas">
+        <widget class="QLineEdit" name="ledit_dir_paneles">
          <property name="geometry">
           <rect>
-           <x>420</x>
+           <x>260</x>
+           <y>20</y>
+           <width>113</width>
+           <height>38</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="lbl_hora_actual">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
            <y>30</y>
-           <width>321</width>
-           <height>20</height>
+           <width>101</width>
+           <height>21</height>
           </rect>
          </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string>Hora Actual:</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="ledit_hora_actual">
+         <property name="geometry">
+          <rect>
+           <x>490</x>
+           <y>20</y>
+           <width>113</width>
+           <height>38</height>
+          </rect>
          </property>
         </widget>
         <zorder>widget</zorder>
@@ -1360,10 +1516,10 @@ border-color: rgb(136, 138, 133);</string>
         <zorder>widget_3</zorder>
         <zorder>widget_4</zorder>
         <zorder>lbl_rooms</zorder>
-        <zorder>btn_agregarpuerta</zorder>
-        <zorder>btn_eliminarpuerta</zorder>
-        <zorder>lbl_cant_puertas</zorder>
-        <zorder>label_cant_puertas</zorder>
+        <zorder>lbl_paneles</zorder>
+        <zorder>ledit_dir_paneles</zorder>
+        <zorder>lbl_hora_actual</zorder>
+        <zorder>ledit_hora_actual</zorder>
        </widget>
       </widget>
      </item>
@@ -1375,7 +1531,7 @@ border-color: rgb(136, 138, 133);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1087</width>
+     <width>1092</width>
      <height>30</height>
     </rect>
    </property>
